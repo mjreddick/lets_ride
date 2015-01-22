@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
 
+  # Here is what is tested on a model
+  
+  # 1. Validations
+  # 2. Logic
+  # 3. Scopes
+
+
 	# respond to an email
 	it {expect(subject).to respond_to(:email)}
 
