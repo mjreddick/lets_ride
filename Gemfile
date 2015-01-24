@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.3'
 
 gem 'factory_girl_rails'
+gem 'bootstrap-sass', '~> 3.2.0'
 
 group :development, :test do
 	gem 'rspec-rails', '~>3.0'
