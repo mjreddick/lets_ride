@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	has_many :userrides
+	has_many :rides, through: :userrides
 
 	attr_accessor :password
 

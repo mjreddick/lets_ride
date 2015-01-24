@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121041907) do
+ActiveRecord::Schema.define(version: 20150124223204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: true do |t|
+    t.string   "eventful_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rides", force: true do |t|
+    t.integer  "num_seats"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "event_id"
+  end
+
+  add_index "rides", ["event_id"], name: "index_rides_on_event_id", using: :btree
+
+  create_table "userrides", force: true do |t|
+    t.string   "user_address"
+    t.boolean  "is_driver"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "ride_id"
+  end
+
+  add_index "userrides", ["ride_id"], name: "index_userrides_on_ride_id", using: :btree
+  add_index "userrides", ["user_id"], name: "index_userrides_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
