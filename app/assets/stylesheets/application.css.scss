@@ -1,0 +1,112 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// FONTS //
+@import url(http://fonts.googleapis.com/css?family=Francois+One|Oxygen);
+
+body {
+  background-color: #f2f2f2;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    
+    margin-top: 70px;
+}
+
+.btn-custom {
+  background-color: hsl(184, 60%, 35%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2daeb7", endColorstr="#23878e");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#2daeb7), to(#23878e));
+  background-image: -moz-linear-gradient(top, #2daeb7, #23878e);
+  background-image: -ms-linear-gradient(top, #2daeb7, #23878e);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2daeb7), color-stop(100%, #23878e));
+  background-image: -webkit-linear-gradient(top, #2daeb7, #23878e);
+  background-image: -o-linear-gradient(top, #2daeb7, #23878e);
+  background-image: linear-gradient(#2daeb7, #23878e);
+  border-color: #23878e #23878e hsl(184, 60%, 32.5%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.16);
+  -webkit-font-smoothing: antialiased;
+  margin: 5px 5px 0px 0px;
+}
+
+/* Links */
+a {
+    color: #FF7373;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a:hover,
+a:focus {
+    color: #FF7373;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:before,
+a:after {
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+// Navigation
+.navbar {
+  font-family: 'Francois One', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar-inverse {
+  background: #2d2d2d;
+  border-color: #2d2d2d;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+  background: #FF7373;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #999999;
+  font-weight: bolder;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+.navbar-inverse .navbar-brand i {
+  color: #FF7373;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
