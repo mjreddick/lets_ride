@@ -8,6 +8,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
 	gem 'rspec-rails', '~>3.0'
 	gem 'shoulda-matchers', require: false
+	gem 'factory_girl_rails'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

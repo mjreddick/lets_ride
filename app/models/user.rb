@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
 		hash_password(self.password)
 	end
 
+	def fullname
+		"#{first_name} #{last_name}"
+	end
+
 	def authenticate(password_attempt)
 		# if password_attempt hashes to password_digest then return the user
 		# otherwise return false
