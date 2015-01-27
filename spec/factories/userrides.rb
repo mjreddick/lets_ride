@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :userride do
     user_address ""
-is_driver ""
+		is_driver ""
   end
 
 end
