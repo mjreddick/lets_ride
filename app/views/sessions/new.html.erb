@@ -1,1 +1,21 @@
-<h1>Log In goes here</h1>
+
+<div class="container">
+	<div class="col-md-4 col-md-offset-4">
+  <%= form_for :login, :html => {:class => "form-signin"} do |f| %>
+    <h2 class="form-signin-heading" "centered">Please sign in</h2>
+			<div>
+	        <%= f.label :email, :class => "control-label" %>
+	        <%= f.text_field :email, :class => "form-control"  %>
+	    </div>
+
+	    <div>
+	        <%= f.label :password, :class => "control-label" %>
+	        <%= f.password_field :password, :class => "form-control"  %>
+	    </div>
+	    <br>
+
+    	<%= f.submit "Log in", class: "btn btn-lg btn-custom btn-block" %>
+    	<br>
+	<% end %>
+	</div>
+</div> <!-- /container -->
