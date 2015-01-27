@@ -1,2 +1,19 @@
 <h1>StaticPages#home</h1>
 <p>This is our home page!</p>
+
+<%= javascript_include_tag "http://api.eventful.com/js/api" %>
+
+<div class="container">
+	<div class="row">
+		<input type="text" placeholder="keywords" id="keyword-input" class="col-sm-4 col-xs-12">
+		<input type="text" placeholder="location" id="location-input" class="col-sm-4 col-sm-offset-1 col-xs-12">
+		<button type="button" id ="search-button" class="btn btn-default col-sm-offset-1">
+		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  &nbsp; Search
+		</button>
+	</div>
+
+	<div id="results-container"class="row">
+		
+	</div>
+
+</div>
