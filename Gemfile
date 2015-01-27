@@ -10,6 +10,12 @@ group :development, :test do
 	gem 'factory_girl_rails'
 end
 
+group :development do
+  gem "better_errors"
+  gem "spirit_fingers"
+  gem "guard-livereload"
+end
+ 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use postgresql as the database for Active Record
