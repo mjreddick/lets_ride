@@ -3,9 +3,18 @@
 		<div class="col-md-6">
 			<h1>Sign up for an account</h1>
 			<%= render 'form' %>
-			
-		</div>		
+		</div>	
+		<div class="col-md-6">
+			<% unless @user.errors.full_messages.empty? %>
+				<h1 class="text-center">Please fix your errors</h1>
+			<ul class="list-group">
+				<% @user.errors.full_messages.each do |msg| %>
+					<li class="list-group-items", class="list-group-item-danger">
+						<%= msg %>
+					</li>
+				<% end %>
+			</ul>
+			<% end %>
+		</div>	
 	</div>
 </div>
-
-
