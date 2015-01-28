@@ -4,4 +4,7 @@ class RidesController < ApplicationController
 		@rides = Ride.all
 	end
 
+	def show
+	end
+
 end
