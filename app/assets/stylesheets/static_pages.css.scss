@@ -9,11 +9,17 @@
 	border: 2px solid black;
 	border-radius: 5px;
 	overflow: hidden;
+	max-width: 350px;
 
 	p {
 		margin: 0;
 		font-size: 10px;
 	}
+}
+
+#home-title {
+	margin-top: 100px;
+	margin-bottom: 25px;
 }
 
 // .event-box > img {

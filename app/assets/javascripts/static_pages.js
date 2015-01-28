@@ -20,14 +20,22 @@ function sendSearch() {
 	    page_number: 1
 		};
 
+	$('#home-title').hide();
+	$('#results-container').html("");
+	$('#keyword-input').parent('div').removeClass().addClass("col-sm-4");
+	$('#location-input').parent('div').removeClass().addClass("col-sm-4");
+	$('#search-button').parent('div').removeClass().addClass("col-sm-4");
 	EVDB.API.call("/events/search", eventSearchArgs, searchResultsReceived);
 	// maybe disable button
 	// perhaps start an animation to let user know search is happening
+
+
 }
 
 function searchResultsReceived(eventData) {
 	// enable button again
 	// populate a list of results or something...
+	$('#home-title').hide();
 	var container = $('#results-container');
 
 	console.log(eventData);
@@ -41,7 +49,7 @@ function searchResultsReceived(eventData) {
 }
 
 function createEventBox(event, i){
-	var eventBox = '<div class="col-md-4"><div class="event-box" data-toggle="modal" data-target="';
+	var eventBox = '<div class="col-sm-4"><div class="event-box" data-toggle="modal" data-target="';
 	// add the modal name for this event
 	eventBox += '#modal_' + i + '">';
 	eventBox += '<img  class="event-image img-responsive" width="128" height="128" src="';
