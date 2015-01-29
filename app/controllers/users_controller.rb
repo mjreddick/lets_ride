@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :destroy, :edit, :update]
 
   def new
     @user = User.new
@@ -19,11 +20,18 @@ class UsersController < ApplicationController
 		@submit_message = 'Edit Account'
 	end
 
+	def show
+	end
+
   private	
 
-  def user_params
-  	params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :image)
-  end
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    def user_params
+    	params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :image)
+    end
 
 end
 
