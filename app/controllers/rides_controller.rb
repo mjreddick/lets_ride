@@ -43,7 +43,7 @@ class RidesController < ApplicationController
 
 	private
 	def ride_params
-		params.require(:ride).permit(:event, :num_seats)
+		params.require(:ride).permit(:event, :num_seats, :id)
 	end
 
 end
