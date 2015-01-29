@@ -19,7 +19,7 @@ module API
             approval_notification.set_approval
     		 		approval_notification.save
 
-    		   	respond_with request, location: [:api, request]
+    		   	head 204
     		 else
     		 	 	respond_with request
     		 end
