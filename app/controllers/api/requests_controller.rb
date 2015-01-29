@@ -38,11 +38,3 @@ module API
 
   end
 end
-
-  create_table "notifications", force: true do |t|
-    t.integer  "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "request_id"
-  end
