@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   get "/dashboard/:id"  => "dashboards#show", as: :dashboard
   get "/rides"      => "rides#show"
 
+  namespace :api do
+    resources :notifications, only: [:destroy], defaults: { format: "json" }
+    resources :requests, only: [:create, :update], defaults: { format: "json" }
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
