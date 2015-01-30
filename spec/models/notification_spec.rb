@@ -21,7 +21,7 @@ RSpec.describe Notification, :type => :model do
 
   it 'should be invalid without a type' do
 
-  	user = FactoryGirl.create(:user, email: "newemail@example.com")
+  	user = FactoryGirl.create(:user)
   	request = FactoryGirl.create(:request, user: user)
 
   	notification = FactoryGirl.build(:notification, type: nil, user: user, request: request)
@@ -29,7 +29,7 @@ RSpec.describe Notification, :type => :model do
   end
 
   it 'should be invalid if type is not an integer' do
-  	user = FactoryGirl.create(:user, email: "another@example.com")
+  	user = FactoryGirl.create(:user)
   	request = FactoryGirl.create(:request, user: user)
 
   	notification = FactoryGirl.build(:notification, type: 1.5, user: user, request: request)
