@@ -1,9 +1,10 @@
 <div class="container">
     <div class="span3 well">
         <center>
-        <%= link_to image_tag("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R", size: "140x140", class: "img-circle"), edit_user_path(@user) %>
+        <%= link_to image_tag( @user.avatar.url(:thumb), size: "140x140", class: "img-circle"), edit_user_path(@user) %>
         <h3><%= "#{@user.first_name} #{@user.last_name}" %></h3>
         <em>click your face to edit your profile</em>
 		</center>
     </div>
 </div>
+

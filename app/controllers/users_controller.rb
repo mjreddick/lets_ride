@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-		@submit_message = 'Edit Account'
+		@submit_message = 'Update Account'
 	end
 
 	def show
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-    	params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :image)
+    	params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :avatar)
     end
 
 end

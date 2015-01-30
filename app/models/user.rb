@@ -2,7 +2,10 @@ class User < ActiveRecord::Base
 	has_many :userrides
 	has_many :rides, through: :userrides
 
-	attr_accessor :password
+	mount_uploader :avatar, AvatarUploader, mount_on: :avatar
+	attr_accessor :password, :mount_uploader
+
+
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
