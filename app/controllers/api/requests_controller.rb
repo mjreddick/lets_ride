@@ -44,10 +44,10 @@ module API
             # ride not full
             reject = false;
             # create userride
-            user_address = request.user_address
+            zipcode = request.zipcode
             rider_id = request.user_id
 
-            userride = request.ride.userrides.new(user_address: user_address, user_id: user_id, is_driver: false)
+            userride = request.ride.userrides.new(zipcode: zipcode, user_id: user_id, is_driver: false)
             userride.save
           end
         else
@@ -68,7 +68,7 @@ module API
 
     private
     	def request_params
-    		params.require(:request).permit(:user_address, :ride_id, :user_id)
+    		params.require(:request).permit(:zipcode, :ride_id, :user_id)
     	end
 
   end

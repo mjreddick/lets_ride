@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130082711) do
+ActiveRecord::Schema.define(version: 20150130182118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 20150130082711) do
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "requests", force: true do |t|
-    t.string   "user_address"
     t.integer  "state"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ride_id"
     t.integer  "user_id"
+    t.integer  "zipcode"
   end
 
   add_index "requests", ["ride_id"], name: "index_requests_on_ride_id", using: :btree
@@ -55,12 +55,12 @@ ActiveRecord::Schema.define(version: 20150130082711) do
   add_index "rides", ["event_id"], name: "index_rides_on_event_id", using: :btree
 
   create_table "userrides", force: true do |t|
-    t.string   "user_address"
     t.boolean  "is_driver"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "ride_id"
+    t.integer  "zipcode"
   end
 
   add_index "userrides", ["ride_id"], name: "index_userrides_on_ride_id", using: :btree
