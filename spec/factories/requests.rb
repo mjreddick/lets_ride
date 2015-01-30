@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :request do
-    user_address "1617 Broadway, Santa Monica, CA"
+    zipcode 92866
 		state 1
 		user
 		ride
