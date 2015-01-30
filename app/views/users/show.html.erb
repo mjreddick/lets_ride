@@ -1,8 +1,10 @@
 <div class="container">
     <div class="span3 well">
         <center>
-        <%= link_to image_tag( @user.avatar.url(:thumb), size: "140x140", class: "img-circle"), edit_user_path(@user) %>
-        <h3><%= "#{@user.first_name} #{@user.last_name}" %></h3>
+        <%= link_to image_tag( @user.avatar.url(:thumb), size: "200x200", class: "img-circle"), edit_user_path(@user) %>
+        <h2><%= "#{@user.first_name} #{@user.last_name}" %></h2>
+        <h3><%= "#{@user.email}" %></h3>
+        <br>
         <em>click your face to edit your profile</em>
 		</center>
     </div>
