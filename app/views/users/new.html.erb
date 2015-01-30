@@ -1,10 +1,10 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4 col-md-offset-4">
 			<h1>Sign up for an account</h1>
 			<%= render 'form' %>
 		</div>	
-		<div class="col-md-6">
+		<div class="col-md-2">
 			<% unless @user.errors.full_messages.empty? %>
 				<h1 class="text-center">Please fix your errors</h1>
 			<ul class="list-group">
