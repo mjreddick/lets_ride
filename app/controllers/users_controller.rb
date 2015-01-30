@@ -24,6 +24,14 @@ class UsersController < ApplicationController
 	def show
 	end
 
+  def update
+    if @user.update_attributes!(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
   private	
 
     def set_user
