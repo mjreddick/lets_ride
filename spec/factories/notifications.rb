@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :notification do
-    type 1
+    category 1
     user
     request
   end
