@@ -1,7 +1,6 @@
 <!-- Fixed navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-    
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
@@ -10,18 +9,29 @@
       </button>
       <a class="navbar-brand" href="/">Let's Ride</a>
     </div>
-
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><%= link_to "Log In", login_path %></li>
-        <% if logged_in? %>
-          <li><%= link_to "Dashboard", dashboard_path(current_user) %></li>
-          <li><%= link_to "Log out!", logout_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Sign Up", new_user_path %></li>
+        <li><% unless current_user %></li>
+        <li><%= link_to 'Log in', login_path %></li>
         <% end %>
+        <li><% if session[:user_id] %></li>
+        <li><%= link_to "#{current_user.first_name.titleize}", user_path(session[:user_id]) %></li>
+        <% end %>
+        <li><% if session[:user_id] %></li>
+            <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
+            <% end %>
+        <% unless session[:user_id] %>
+            <li><%= link_to "Sign Up", new_user_path %> </li>
+            <% end %>
       </ul>
     </div>
-
   </div>
 </div>
+
+
+
+
+
+
+
+
