@@ -26,11 +26,6 @@ module API
       end
     end
 
-    def show
-    	request = Request.find(params[:id])
-    	respond_with request
-    end
-
     def update
       request = Request.find(params[:id])
       driver_id = request.ride.userrides.where(is_driver: true).user_id
