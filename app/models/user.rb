@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 	has_many :userrides
 	has_many :rides, through: :userrides
+	has_many :requests
+	has_many :notifications
 
 	mount_uploader :avatar, AvatarUploader, mount_on: :avatar
 	attr_accessor :password, :mount_uploader
