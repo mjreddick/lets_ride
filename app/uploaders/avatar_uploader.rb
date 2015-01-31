@@ -17,10 +17,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-  version (:report_thumb) { process :resize_to_fit => [200,200] }
-  version (:thumb) { process :resize_to_fit => [200,200] }
-  version (:large) { process :resize_to_fit => [1024, 768] }
-
+  
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -30,8 +27,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "micah.jpg"
   end
 
+  
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  process :make_square => [200]
   #
   # def scale(width, height)
   #   # do something
@@ -41,6 +39,22 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process :resize_to_fit => [50, 50]
   # end
+
+  def make_square(size)
+    #This resizes and crops the image to make it a square while maintaining aspect ratio
+    manipulate! do |img|
+      img.resize "#{size}x#{size}^"
+      if img.width > img.height
+        overflow = (img.width - size) / 2
+        img.crop "#{size}x#{size}+#{overflow}+0"
+      else
+        overflow = (img.height - size) / 2
+        img.crop "#{size}x#{size}+0+#{overflow}"
+      end
+
+      img
+    end
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
