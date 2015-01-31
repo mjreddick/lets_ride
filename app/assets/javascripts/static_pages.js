@@ -10,31 +10,36 @@ $(function() {
 function sendSearch() {
 	var keywords = $('#keyword-input').val();
 	var location = $('#location-input').val();
+
+	// default to LA
+	if (location == "") {
+		location = "Los Angeles, CA"
+	}
 	var eventSearchArgs = {
 	    app_key:"SRKGJkZQjmzT9fzZ",
 	    keywords: keywords,
 	    location: location,
 	    date: "Future",
-	    image_sizes: ["medium"],
+	    image_sizes: ["medium", "large"],
 	    page_size: 6,
 	    page_number: 1
 		};
 
 	$('#home-title').hide();
 	$('#results-container').html("");
-	$('#keyword-input').parent('div').removeClass().addClass("col-sm-4");
+	$('#keyword-input').parent('div').removeClass().addClass("col-sm-4 col-sm-offset-1");
 	$('#location-input').parent('div').removeClass().addClass("col-sm-4");
-	$('#search-button').parent('div').removeClass().addClass("col-sm-4");
+	$('#search-button').parent('div').removeClass().addClass("col-sm-2");
+	// disable the search button
+	$('#search-button').addClass("disabled")
 	EVDB.API.call("/events/search", eventSearchArgs, searchResultsReceived);
-	// maybe disable button
-	// perhaps start an animation to let user know search is happening
-
 
 }
 
 function searchResultsReceived(eventData) {
 	// enable button again
-	// populate a list of results or something...
+	$('#search-button').removeClass("disabled")
+	
 	$('#home-title').hide();
 	var container = $('#results-container');
 
@@ -46,9 +51,15 @@ function searchResultsReceived(eventData) {
 		container.append(createEventBox(eventArray[i], i));
 		container.append(createEventModal(eventArray[i], i))
 	}
+	$('.drive-btn').click(chooseDrive);
+	$('.ride-btn').click(chooseRide);
 }
 
 function createEventBox(event, i){
+	// get the date/time
+	var date_time = new Date(event.start_time);
+	date_time = date_time.toDateString();
+
 	var eventBox = '<div class="col-sm-4"><div class="event-box" data-toggle="modal" data-target="';
 	// add the modal name for this event
 	eventBox += '#modal_' + i + '">';
@@ -61,10 +72,9 @@ function createEventBox(event, i){
 		eventBox += "http://www.homelesshouston.org/wp-content/uploads/2012/09/blank_test-200x200.png";
 	}
 
-	eventBox += '""><div class="event-box-text">';
-	eventBox += '<p>' + event.title + '</p>';
-	eventBox += '<p>' + event.venue_name + '</p>';
-	eventBox += '<p>' + event.start_time + '</p>';
+	eventBox += '"><div class="event-box-text">';
+	eventBox += '<p><span class="event-box-title">' + event.title + '</span></p>';
+	eventBox += '<p>' + date_time + '</p>';
 	eventBox += '</div></div></div>';
 	
 	return eventBox;
@@ -72,13 +82,65 @@ function createEventBox(event, i){
 }
 
 function createEventModal(event, i){
+	// get the date/time
+	var date_time = new Date(event.start_time);
+	date_time = date_time.toDateString();
+
 	var modal = '<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="';
 	// add modal name for this event
 	modal += 'modal_' + i + '">';
 	modal += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">';
-	modal += event.title + '</h4></div><div class="modal-body">';
+	modal += '<strong>' + event.title + '</strong></h4></div><div class="modal-body">';
+	// add hidden event info to be used to create ride
+
+	modal += '<div class="hidden event-eventful-id">' + event.id + '</div>';
 	// add modal content
-	modal += 'Some Stuff';
-	modal += '</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary">Save changes</button></div></div></div></div>';
+	modal += '<img  class="large-event-image img-responsive" width="480" height="480" src="';
+	// add the image provided or a default image if one isn't provided
+	if(event.image && event.image.large && event.image.large.url) {
+		modal += 	event.image.large.url;
+	}
+	else {
+		modal += "http://www.homelesshouston.org/wp-content/uploads/2012/09/blank_test-200x200.png";
+	}
+	modal += '">';
+	modal += '<p>' + event.venue_name + '</p>';
+	modal += '<p>' + date_time + '</p>';
+	if(event.description) {
+		modal += '<p>' + event.description + '</p>';
+	}
+	modal += '</div><div class="modal-footer text-center"><button type="button" class="btn btn-default btn-lg ride-btn">Ride</button><button type="button" class="btn btn-primary btn-lg drive-btn">Drive</button></div></div></div></div>';
 	return modal;
 }
+
+function chooseDrive() {
+	chooseHelper(this);
+
+	// show the modal to create a ride
+	$('#newRideModal').modal('show');
+}
+
+// function chooseRide(){
+// 	chooseHelper(this);
+
+// 	// show the modal to get the user's zipcode
+// 	$('#zipcodeModal').modal('show');
+// }
+
+function chooseHelper(self){
+	var modal = $(self).parents('.modal');
+
+	// hide the modal
+	modal.modal('hide');
+
+	var id = modal.find('.event-eventful-id').html();
+
+	// console.log(id)
+	$('#ride_eventful_id').val(id);	
+}
+
+// this makes sure the title isn't too long
+// it will cut it off and add ... if it is too long
+// function formattedTitle(title) {
+// 	if(title.length)
+// }

@@ -19,7 +19,7 @@
 			    <input type="text" class="form-control" id="location-input" placeholder="Los Angeles, CA">
 			  </div>
 			  <div class="col-sm-6 col-sm-offset-3">
-			    <button id="search-button" class="btn btn-lg btn-danger btn-block">
+			    <button id="search-button" class="btn btn-md btn-danger btn-block">
 			    <span class="glyphicon glyphicon-search"</span>
 			    </button>
 				</div>
@@ -28,6 +28,45 @@
 
 			<div id="results-container" class="row">
 				
+			</div>
+
+			<!-- New Ride Modal -->
+			<div class="modal fade" id="newRideModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel"><strong>Create a Ride</strong></h4>
+			      </div>
+			      <div class="modal-body">
+
+			      	<%= form_for(:ride, url: rides_path) do |f| %>
+
+			      		<%= f.text_field :eventful_id, class: 'hidden'%>
+
+			      	  <%= f.label :zipcode %>
+			      	  <%= f.text_field :zipcode, class: 'form-control' %>
+
+			      	  <%= f.label :num_seats, "Available seats" %>
+			      	  <%= f.number_field :num_seats, min: 1, class: 'form-control' %>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			          <%= f.submit "Create Ride", class: "btn btn-danger" %>
+			        <% end %>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+			<div class="logged-in hidden">
+				<% if logged_in? %>
+					true
+				<% else %>
+					false
+				<% end %>
 			</div>
 
 		</div>
