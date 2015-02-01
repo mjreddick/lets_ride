@@ -7,6 +7,7 @@ class Notification < ActiveRecord::Base
 	validates :category, presence: true, numericality: { only_integer: true, 
 		greater_than_or_equal_to: 0, less_than_or_equal_to: 3 }
 
+  NOTIFICATION_CATEGORIES = { 0 => "rejected", 1 => "accepted", 2 => "pending", 3 => "approval"};
   
   def set_pending
   	self.category = 2 
@@ -22,6 +23,10 @@ class Notification < ActiveRecord::Base
 
 	def set_approval
 		self.category = 3
+	end
+
+	def get_category
+		NOTIFICATION_CATEGORIES[self.category]
 	end
 
 end
