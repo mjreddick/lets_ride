@@ -45,6 +45,12 @@
 			      	<%= form_for(:ride, url: rides_path) do |f| %>
 
 			      		<%= f.text_field :eventful_id, class: 'hidden'%>
+			      		<%= f.text_field :image_url_medium, class: 'hidden'%>
+			      		<%= f.text_field :image_url_large, class: 'hidden'%>
+			      		<%= f.text_field :title, class: 'hidden'%>
+			      		<%= f.text_field :details, class: 'hidden'%>
+			      		<%= f.text_field :start_date_time, class: 'hidden'%>
+			      		<%= f.text_field :venue_name, class: 'hidden'%>
 
 			      	  <%= f.label :zipcode %>
 			      	  <%= f.text_field :zipcode, class: 'form-control' %>
