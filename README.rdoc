@@ -38,7 +38,7 @@ Add each gem to your Gemfile, then
 
 Running the test suite in Let's Ride
 
-Let's Ride uses RSpec and Factory Girl for testing models and controllers. Tests are broken down into specific files in the app's spec directory. For example, to run all of the models tests, run:
+Let's Ride uses RSpec and Factory Girl for testing models and controllers. Tests are broken down into specific files in the app's spec directory.
 
 <tt>bundle exec rspec</tt>
 
