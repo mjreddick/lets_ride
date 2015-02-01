@@ -5,6 +5,7 @@
 
 $(function() {
 	$('#search-button').click(sendSearch)
+	$('#look-for-rides').click(lookForRides)
 });
 
 function sendSearch() {
@@ -120,23 +121,39 @@ function chooseDrive() {
 	$('#newRideModal').modal('show');
 }
 
-// function chooseRide(){
-// 	chooseHelper(this);
+function chooseRide(){
+	chooseHelper(this);
 
-// 	// show the modal to get the user's zipcode
-// 	$('#zipcodeModal').modal('show');
-// }
+	// show the modal to get the user's zipcode
+	$('#zipcodeModal').modal('show');
+}
 
 function chooseHelper(self){
-	var modal = $(self).parents('.modal');
 
-	// hide the modal
-	modal.modal('hide');
+	// if(){
+		var modal = $(self).parents('.modal');
 
-	var id = modal.find('.event-eventful-id').html();
+		// hide the modal
+		modal.modal('hide');
 
-	// console.log(id)
-	$('#ride_eventful_id').val(id);	
+		var id = modal.find('.event-eventful-id').html();
+
+		// console.log(id)
+		$('#ride_eventful_id').val(id);	
+	// }
+	// else {
+
+	// }
+}
+
+// when the Look For Rides button is pressed
+// after a user says they want a ride and
+// inputs a zipcode
+function lookForRides(){
+	var zipcode = $('#zipcodeInput').val();
+	var eventId = $('#ride_eventful_id').val();
+	window.location.href = "/rides?event_ful_id=" + eventId + 
+	"&zipcode=" + zipcode;
 }
 
 // this makes sure the title isn't too long
