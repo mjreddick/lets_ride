@@ -115,22 +115,26 @@ function createEventModal(event, i){
 }
 
 function chooseDrive() {
-	chooseHelper(this);
+	var showModal = chooseHelper(this);
 
 	// show the modal to create a ride
-	$('#newRideModal').modal('show');
+	if(showModal){
+		$('#newRideModal').modal('show');
+	}
 }
 
 function chooseRide(){
-	chooseHelper(this);
+	var shoModal = chooseHelper(this);
 
 	// show the modal to get the user's zipcode
-	$('#zipcodeModal').modal('show');
+	if(showModal){
+		$('#zipcodeModal').modal('show');
+	}
 }
 
 function chooseHelper(self){
 
-	// if(){
+	if($('#logged-in').html() == "true"){
 		var modal = $(self).parents('.modal');
 
 		// hide the modal
@@ -139,11 +143,14 @@ function chooseHelper(self){
 		var id = modal.find('.event-eventful-id').html();
 
 		// console.log(id)
-		$('#ride_eventful_id').val(id);	
-	// }
-	// else {
+		$('#ride_eventful_id').val(id);
 
-	// }
+		return true;	
+	}
+	else {
+		window.location.href = "/login";
+		return false;
+	}
 }
 
 // when the Look For Rides button is pressed
