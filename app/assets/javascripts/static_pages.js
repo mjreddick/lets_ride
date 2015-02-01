@@ -76,7 +76,7 @@ function createEventBox(event, i){
 	}
 
 	eventBox += '"><div class="event-box-text">';
-	eventBox += '<p><span class="event-box-title">' + event.title + '</span></p>';
+	eventBox += '<p><span class="event-box-title">' + formattedTitle(event.title) + '</span></p>';
 	eventBox += '<p>' + date_time + '</p>';
 	eventBox += '</div></div></div>';
 	
@@ -167,6 +167,18 @@ function lookForRides(){
 
 // this makes sure the title isn't too long
 // it will cut it off and add ... if it is too long
-// function formattedTitle(title) {
-// 	if(title.length)
-// }
+function formattedTitle(title) {
+	var MAX_LENGTH = 43;
+	if(title.length >= MAX_LENGTH){
+		title = title.slice(0, MAX_LENGTH - 3);
+
+		//try to cut it off at a whole word
+		var lastWordIndex = title.lastIndexOf(" ");
+		if(lastWordIndex != -1) {
+			title = title.slice(0, lastWordIndex);
+		}
+
+		title += "...";
+	}
+	return title;
+}
