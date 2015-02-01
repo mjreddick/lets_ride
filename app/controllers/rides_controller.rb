@@ -1,7 +1,14 @@
 class RidesController < ApplicationController
-	
+
 	def index
 		@rides = Ride.all
+		@users = User.all
+
+		# if logged_in?
+		# 	render
+		# else
+		# 	redirect_to new_user_path
+
 	end
 
 	def new
@@ -13,7 +20,9 @@ class RidesController < ApplicationController
 	end
 
 	def create
-		@ride = Ride.new(ride_params)
+		event = Event.find(params[:event_id])
+		new_ride = ride_params
+		ride = event.rides.create[new_ride]
 		if @ride.save
 			redirect_to ride_path
 		else
@@ -26,7 +35,7 @@ class RidesController < ApplicationController
 	end
 
 	def update
-		@ride = Ride.find(params[:id])	
+		@ride = Ride.find(params[:id])
 		if @ride.update_attributes(ride_params)
 			redirect_to rides_path, alert: "Ride Updated"
 		else
