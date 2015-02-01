@@ -21,7 +21,7 @@ Let's Ride is web carpool app centered around events. Visitors can do simple sea
 <b>Ruby Gems included in Let's Ride</b>
 
 * bootstrap-sass
-* bcrypt (user uuth)
+* bcrypt (user auth)
 * figaro
 * fog (Amazon S3)
 * carrierwave
