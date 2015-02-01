@@ -124,7 +124,7 @@ function chooseDrive() {
 }
 
 function chooseRide(){
-	var shoModal = chooseHelper(this);
+	var showModal = chooseHelper(this);
 
 	// show the modal to get the user's zipcode
 	if(showModal){
