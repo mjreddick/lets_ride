@@ -15,5 +15,10 @@ RSpec.describe Ride, :type => :model do
 		expect(ride).to be_invalid
 	end
 
+	# it 'ride should have 1 driver' do
+	# 	ride = FactoryGirl.create(:ride_with_user)
+	# 	ride.userrides.first.is_drive = true
+
+
 	
 end
