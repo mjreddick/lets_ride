@@ -13,7 +13,7 @@
 						<div class='list-group-item-heading'>
 							<p>I'm, <strong><%= user.first_name %></strong>, join my carpool!</p>
 						</div>
-          <%= image_tag(user.avatar.url(:thumb), size: "100x100") %>
+          <%= image_tag(user.avatar.url, size: "100x100") %>
           <button  class="btn btn-default btn-join-carpool">Join</button>
 					<% end %>				
 				</div>

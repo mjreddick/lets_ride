@@ -1,5 +1,17 @@
 <div class='row'>
 	<div class='col-sm-6 col-sm-offset-3'>
 			<%= render 'form' %>
-	</div>	
+	</div>
+	<div class="col-md-2">
+			<% unless @user.errors.full_messages.empty? %>
+				<h1 class="text-center">Please fix your errors</h1>
+			<ul class="list-group">
+				<% @user.errors.full_messages.each do |msg| %>
+					<li class="list-group-items list-group-item-danger">
+						<%= msg %>
+					</li>
+				<% end %>
+			</ul>
+			<% end %>
+		</div>	
 </div>
