@@ -4,4 +4,7 @@ FactoryGirl.define do
     event
   end
 
+  factory :ride_with_users, parent: :ride do |ride|
+  	userrides { build_list :userride, 5}
+  end
 end
