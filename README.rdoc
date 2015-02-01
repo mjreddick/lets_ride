@@ -1,8 +1,8 @@
 == Let's Ride
 
-Let's Ride is web carpool app centered around events. Visitors can do simple searches or sign up for a free account to either create or join rides. 
+Let's Ride is web carpool app centered around events. Visitors can do simple searches or sign up for a free account to either create or join a ride associated with that event.
 
-Let's Ride runs on the following technologies:
+<b>Let's Ride runs on the following technologies:</b>
 
 * Ruby 2.1.3
 
@@ -18,8 +18,28 @@ Let's Ride runs on the following technologies:
 
 * Heroku for deployment
 
-* ...
+<b>Ruby Gems included in Let's Ride</b>
 
+* bootstrap-sass
+* bcrypt (user uuth)
+* figaro
+* fog (Amazon S3)
+* carrierwave
+* better_errors (streamlined development)
+* mini_magick
+* sass-rails
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+To install to your machine, run
+
+<tt>gem install name_of_gem_to_install</tt>
+
+Add each gem to your Gemfile, then
+<tt>run bundle install</tt>
+
+Running the test suite in Let's Ride
+
+Let's Ride uses RSpec and Factory Girl for testing models and controllers. Tests are broken down into specific files in the app's spec directory. For example, to run all of the models tests, run:
+
+<tt>bundle exec rspec</tt>
+
+<b>Thanks for checking out Let's Ride</b>
