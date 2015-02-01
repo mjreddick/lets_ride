@@ -43,14 +43,16 @@
 			      <div class="modal-body">
 
 			      	<%= form_for(:ride, url: rides_path) do |f| %>
+			      		<%= fields_for :event do |e| %>
 
-			      		<%= f.text_field :eventful_id, class: 'hidden'%>
-			      		<%= f.text_field :image_url_medium, class: 'hidden'%>
-			      		<%= f.text_field :image_url_large, class: 'hidden'%>
-			      		<%= f.text_field :title, class: 'hidden'%>
-			      		<%= f.text_field :details, class: 'hidden'%>
-			      		<%= f.text_field :start_date_time, class: 'hidden'%>
-			      		<%= f.text_field :venue_name, class: 'hidden'%>
+				      		<%= e.text_field :eventful_id, class: 'hidden'%>
+				      		<%= e.text_field :image_url_medium, class: 'hidden'%>
+				      		<%= e.text_field :image_url_large, class: 'hidden'%>
+				      		<%= e.text_field :title, class: 'hidden'%>
+				      		<%= e.text_field :details, class: 'hidden'%>
+				      		<%= e.text_field :start_date_time, class: 'hidden'%>
+				      		<%= e.text_field :venue_name, class: 'hidden'%>
+				      	<% end %>
 
 			      	  <%= f.label :zipcode %>
 			      	  <%= f.text_field :zipcode, class: 'form-control' %>
