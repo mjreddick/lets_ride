@@ -2,6 +2,7 @@
  // All this logic will automatically be available in application.js.
  // You can use CoffeeScript in this file: http://coffeescript.org/
 
+var DEFAULT_IMAGE_URL = 'https://s3-us-west-1.amazonaws.com/lets-ride/default-icon.png?X-Amz-Date=20150131T231817Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=7d4e32c5874a62c126ba0ce89339d61198e44d60a3dfce97befd4e6dc7d9c555&X-Amz-Credential=ASIAJUIJDGWXJCON2XMA/20150131/us-west-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=AQoDYXdzEID//////////wEakALueVUVhrsi/Lj2P0ljUt14wLx23YNUVFD/3osjuDH4M2RXSEgW0ZFXhnqu6hjv%2BSU5Cu/klAsrD0R/UAJ9FYqyFYCL%2BUx/Wy7hkceY2t2lAQccNgsAIcgL4HGB2NLNYgHnaP19I7MiB0UMyr2DjdScIQ9LWeg07QtSftNfBp7EZTjlRfyJM0WWKP4Y3lOxYe5HwZ12uM5bIC3ejOGcd1A1cxiNLKn7vQkw6Ge4U1zyAFkt6jg9hctxAlFRts/8PmOj65BzxrE2tW3N4ddyxj7YZsGUS3TqsbtvSJojLT%2BuzQP7AniZPfsHyHV0jJrWvV8fxSOas5Wrge4FnWRT6LjINCsYQsMAWiP/ckNLYFxJ8SCzv7WmBQ%3D%3D';
 
 $(function() {
 	$('#search-button').click(sendSearch)
@@ -32,7 +33,8 @@ function sendSearch() {
 	$('#location-input').parent('div').removeClass().addClass("col-sm-4");
 	$('#search-button').parent('div').removeClass().addClass("col-sm-2");
 	// disable the search button
-	$('#search-button').addClass("disabled")
+	$('#search-button').addClass("disabled");
+	$('#loading-spinner').show();
 	EVDB.API.call("/events/search", eventSearchArgs, searchResultsReceived);
 
 }
@@ -40,7 +42,7 @@ function sendSearch() {
 function searchResultsReceived(eventData) {
 	// enable button again
 	$('#search-button').removeClass("disabled")
-	
+	$('#loading-spinner').hide();
 	$('#home-title').hide();
 	var container = $('#results-container');
 
@@ -70,7 +72,7 @@ function createEventBox(event, i){
 		eventBox += 	event.image.medium.url;
 	}
 	else {
-		eventBox += "http://www.homelesshouston.org/wp-content/uploads/2012/09/blank_test-200x200.png";
+		eventBox += DEFAULT_IMAGE_URL;
 	}
 
 	eventBox += '"><div class="event-box-text">';
@@ -102,7 +104,7 @@ function createEventModal(event, i){
 		modal += 	event.image.large.url;
 	}
 	else {
-		modal += "http://www.homelesshouston.org/wp-content/uploads/2012/09/blank_test-200x200.png";
+		modal += DEFAULT_IMAGE_URL;
 	}
 	modal += '">';
 	modal += '<p>' + event.venue_name + '</p>';
