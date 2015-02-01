@@ -170,13 +170,13 @@ function chooseHelper(self){
 		var event = events[index];
 
 		// insert all the needed event values into the create ride modal
-		$('#ride_eventful_id').val(event.id);
-		$('#ride_image_url_medium').val(event.mediumImage);
-		$('#ride_image_url_large').val(event.largeImage);
-		$('#ride_title').val(event.title);
-		$('#ride_details').val(event.details);
-		$('#ride_start_date_time').val(event.starDateTime);
-		$('#ride_venue_name').val(event.venueName);
+		$('#event_eventful_id').val(event.id);
+		$('#event_image_url_medium').val(event.mediumImage);
+		$('#event_image_url_large').val(event.largeImage);
+		$('#event_title').val(event.title);
+		$('#event_details').val(event.details);
+		$('#event_start_date_time').val(event.starDateTime);
+		$('#event_venue_name').val(event.venueName);
 
 		return true;	
 	}
