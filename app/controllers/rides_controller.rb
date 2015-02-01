@@ -20,15 +20,51 @@ class RidesController < ApplicationController
 	end
 
 	def create
-		event = Event.find(params[:event_id])
-		new_ride = ride_params
-		ride = event.rides.create[new_ride]
-		if @ride.save
-			redirect_to ride_path
+		# check if the user is logged in
+		if logged_in?
+			# see if the event already exists
+			@event = Event.where(eventful_id: params[:event][:eventful_id]).first
+
+			# if not create it
+			@event = Event.create(event_params) unless @event
+
+			if @event
+				#Event exists, or was created, now create the ride
+				if @ride = @event.rides.create(ride_params)
+					#ride saved successfully
+					#Create the driver's userride
+					@userride = @ride.userrides.new(zipcode: params[:ride][:zipcode], is_driver: true, user: current_user)
+
+					if @userride.save
+						#Everything needed is now in the database
+
+					else
+						# error creating userride, show error message
+						flash[:error] = "An error occurred while saving data associated with your ride, please try again"
+					end
+
+				else
+					# error creating ride, show error message
+					flash[:error] = "An error occurred while saving your ride, please try again"
+				end
+
+			else
+				# error creating event, show error message
+				flash[:error] = "An error occurred while saving the event associated with your ride, please try again"
+			end
+
+			# redirect the user to their dashboard
+			redirect_to dashboard_path(current_user)
+
 		else
-			render new
+			# if not logged in redirect them to the login page
+			flash[:error] = "Must be logged in to create a ride"
+			redirect_to login_path
 		end
+
 	end
+
+
 
 	def edit
 		@ride = Ride.find(params[:id])
@@ -52,7 +88,13 @@ class RidesController < ApplicationController
 
 	private
 	def ride_params
-		params.require(:ride).permit(:event, :num_seats, :id)
+		params.require(:ride).permit(:num_seats)
+	end
+
+	def event_params
+		params.require(:event)
+					.permit(:eventful_id, :image_url_medium, :image_url_large, 
+									:title, :details, :start_date_time, :venue_name)
 	end
 
 end
