@@ -1,4 +1,4 @@
-<%= javascript_include_tag "rides.js" %>
+<%= javascript_include_tag "rides.js"  %>
 
 <div class='container'>
 	<div class='row'>
@@ -8,6 +8,7 @@
 					<h2 class='inline text-center'>Rides Available</h2>
 				</div>
 				<div class='panel-body'>
+
 					<% unless @users.empty? %>
 						<% @users.each do |user| %>
 							<div class='list-group'></div>
@@ -16,10 +17,12 @@
 								<p>I'm, <strong><%= user.first_name %></strong>, join my carpool!</p>
 							</div>
 	          	<%= image_tag(user.avatar.url, size: "100x100") %>
-	          	<%= form_for :userride, url: api_requests_path, remote: true do |f|%>
+	          	<%= form_for @request, url: api_requests_path, remote: true do |f|%>
 	          		<br/>
-	          		<%= f.hidden_field :event_id, value: @event.id %>
-	          		<%= f.hidden_field :user_id, value: user.id %> 
+	          		<%= f.hidden_field :ride_id, value: user.rides.first.id %>
+	          		<%= f.hidden_field :user_id, value: current_user.id %> 
+	          		<%= f.hidden_field :driver_id, value: user.id %>
+	          		<%= f.hidden_field :zipcode, value: @zipcode %>
 	          		<%= f.submit "Join My Carpool", class: "btn btn-default btn-join-carpool" %>
 	          	<% end %>
 	          <% end %>	
@@ -31,3 +34,4 @@
 		</div>
 	</div>
 </div>
+

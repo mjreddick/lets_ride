@@ -1,11 +1,16 @@
-module API
+module Api
 	class RequestsController < ApplicationController
 		protect_from_forgery with: :null_session
     respond_to :json
 
     def create
     	if logged_in_as(params[:request][:user_id])
-        request = Request.new(request_params)
+        driver_id = request_params[:driver_id]
+        # remove the driver id from the params so
+        # we can build a new Request
+        filtered_params = request_params
+        filtered_params.delete(:driver_id)
+        request = Request.new(filtered_params)
         if request.save
           # create the notification to tell the passenger that the request is pending
   		 		pending_notification = request.notifications.new(user_id: request.user_id)
@@ -13,8 +18,6 @@ module API
   		 		pending_notification.save
                   
           # create the notification for the driver for a ride request
-          # get the id of the driver for this ride
-          driver_id = request.ride.userrides.where(is_driver: true).user_id
   		 		approval_notification = request.notifications.new(user_id: driver_id)
           approval_notification.set_approval
   		 		approval_notification.save
@@ -68,8 +71,7 @@ module API
 
     private
     	def request_params
-    		params.require(:request).permit(:zipcode, :ride_id, :user_id)
+    		params.require(:request).permit(:zipcode, :ride_id, :user_id, :driver_id)
     	end
-
   end
 end
