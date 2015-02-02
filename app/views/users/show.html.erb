@@ -3,11 +3,9 @@
         <center>
         <h2><%= "#{@user.first_name.titleize} #{@user.last_name.titleize}" %></h2>
         <%= link_to image_tag( @user.avatar.url, size: "200x200", class: "img-circle"), edit_user_path(@user) %>
+         <em>Click image to edit your profile</em>
         <h3><%= "#{@user.email}" %></h3>
         <br>
-        <em>click your face to edit your profile</em>
-        <br>
-        <%= link_to "rides_index", rides_path %>
 		</center>
     </div>
 </div>

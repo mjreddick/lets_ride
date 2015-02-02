@@ -21,12 +21,13 @@
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
   <div>
-    <%= f.file_field :avatar %> 
+    <b>Choose your profile photo</b>
+    <%= f.file_field :avatar %>
   </div>
   <div>
+    <center><%= f.submit @submit_message, class: "btn btn-primary" %></center>
+  </div>
+    <div>
     <br>
-  </div>
-  <div>
-    <%= f.submit @submit_message, class: "btn btn-primary" %>
   </div>
 <% end %>
