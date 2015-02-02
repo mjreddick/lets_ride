@@ -71,9 +71,8 @@
                     <% case n.get_category%>
                     <% when "rejected", "accepted", "pending"%>
                         <div class="alert alert-<%=alert_type%> alert-dismissable normal-notification">
-                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                             <button type="button" class="close notification-close" data-dismiss="alert" aria-hidden="true" data-id="<%= n.id %>">×</button>
                             Your request to join <strong><%= "#{name.titleize}'s" %></strong> ride to <strong><%= title %></strong> has been <%= state %>
-                            <div class="hidden"><%= n.id %></div>
                         </div> <!-- end alert -->
                     <% when "approval"%>
                         <div class="alert alert-info approval-notification">
@@ -84,8 +83,8 @@
                                     <h4 class="media-heading">
                                         <strong><%= name.titleize %></strong> would like to join your ride to <strong><%=title%></strong>
                                     </h4> 
-                                    <button class="btn btn-success">Accept</button>
-                                    <button class= "btn btn-danger">Reject</button>
+                                    <button class="btn btn-success ride-accept" data-id="<%= n.request.id %>" data-accepted="true">Accept</button>
+                                    <button class= "btn btn-danger ride-accept" data-id="<%= n.request.id %>" data-accepted="false">Reject</button>
                                 </div> <!-- end media-body -->
                             </div> <!--end media --> 
                             <div class="hidden"><%= n.request.id %></div>

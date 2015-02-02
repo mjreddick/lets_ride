@@ -31,7 +31,7 @@ module Api
 
     def update
       request = Request.find(params[:id])
-      driver_id = request.ride.userrides.where(is_driver: true).user_id
+      driver_id = request.ride.userrides.where(is_driver: true).first.user_id
       if logged_in_as(driver_id)
         request.notifications.destroy_all
         
@@ -50,7 +50,7 @@ module Api
             zipcode = request.zipcode
             rider_id = request.user_id
 
-            userride = request.ride.userrides.new(zipcode: zipcode, user_id: user_id, is_driver: false)
+            userride = request.ride.userrides.new(zipcode: zipcode, user_id: rider_id, is_driver: false)
             userride.save
           end
         else
@@ -65,7 +65,11 @@ module Api
         else
           notification.set_accepted
         end
-        notification.save
+        if notification.save
+          head 204
+        else
+          respond_with notification
+        end
       end
     end
 
