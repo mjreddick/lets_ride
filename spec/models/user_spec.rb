@@ -22,13 +22,18 @@ RSpec.describe User, :type => :model do
 	end
 
 	it 'returns a users full name as a string' do 
-		user = FactoryGirl.build(:user)
-		expect(user.fullname).to eq("Firstname Lastname")
+		user = FactoryGirl.build(:user, first_name: "Aaron", last_name: "Rodgers")
+		expect(user.fullname).to eq("Aaron Rodgers")
 	end
 
 	it 'is invalid without an email address' do 
 		user = FactoryGirl.build(:user, email: nil)
 		expect(user).to be_invalid
+	end	
+
+	it "has a password" do 
+		user = FactoryGirl.build_stubbed(:user)
+		expect(user.password_digest).to_not be_nil
 	end
 
 	it {expect(subject).to respond_to(:password_digest)}
