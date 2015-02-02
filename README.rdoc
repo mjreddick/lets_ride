@@ -42,4 +42,10 @@ Let's Ride uses RSpec and Factory Girl for testing models and controllers. Tests
 
 <tt>bundle exec rspec</tt>
 
+Please view the following images for more info:
+https://s3-us-west-1.amazonaws.com/lets-ride/mindmap.png
+https://s3-us-west-1.amazonaws.com/lets-ride/2015-01-20.jpg
+https://s3-us-west-1.amazonaws.com/lets-ride/2015-01-20-1.jpg
+https://s3-us-west-1.amazonaws.com/lets-ride/2015-01-20-2.jpg
+
 <b>Thanks for checking out Let's Ride</b>
