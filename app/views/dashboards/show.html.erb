@@ -21,13 +21,70 @@
             <h3>
                 Notifications
             </h3>
-            <div class="alert alert-success alert-dismissable">
-                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                </h4><strong>Pending Request</strong>
-                <p>Blah blah blah check it out
-                <p><a href="#" class="alert-link">view user</a>
+            <% if @notifications.empty? %>
 
-            </div> <!-- end alert -->
+                You have no notifications at this time.
+            <% else %>
+                <% @notifications.each do |n| %>
+                    <% category = n.get_category %>
+
+                    <%# set the name variable %>
+                    <% if category == "approval" %>
+                        <%# name should be the requester's name %>
+                        <% name = n.request.user.first_name %>
+                    <% else %>
+                        <%# name should be the drivers name %>
+                        <% name = n.request.ride.userrides.where(is_driver: true).first.user.first_name %>
+                    <% end %>
+
+                    <%# set the title variable %>
+                    <% title = n.request.ride.event.title %>
+                    
+                    <%# set the state variable (not used for approval) %>
+                    <%# and the alert_type variable (not used for approval) %>
+                    <% case category %>
+                    <% when "rejected"%>
+                        <% state = "rejected" %>
+                        <% alert_type = "danger" %>
+                    <% when "accepted"%>
+                        <% state = "accepted" %>
+                        <% alert_type = "success" %>
+                    <% when "pending"%>
+                        <% state = "sent" %>
+                        <% alert_type = "warning" %>
+                    <% when "approval" %>
+
+                    <% end %>
+
+                    <% case n.get_category%>
+                    <% when "rejected", "accepted", "pending"%>
+                        <div class="alert alert-<%=alert_type%> alert-dismissable normal-notification">
+                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Your request to join <strong><%= "#{name.titleize}'s" %></strong> ride to <strong><%= title %></strong> has been <%= state %>
+                            <div class="hidden"><%= n.id %></div>
+                        </div> <!-- end alert -->
+                    <% when "approval"%>
+                        <div class="alert alert-info approval-notification">
+                            <div class="media">
+                                 
+                                 <%= link_to image_tag(n.request.user.avatar.url, size: "64x64", class: "media-object"), user_path(n.request.user), class: "pull-left" %>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <strong><%= name.titleize %></strong> would like to join your ride to <strong><%=title%></strong>
+                                    </h4> 
+                                    <button class="btn btn-success">Accept</button>
+                                    <button class= "btn btn-danger">Reject</button>
+                                </div> <!-- end media-body -->
+                            </div> <!--end media --> 
+                            <div class="hidden"><%= n.request.id %></div>
+                        </div> <!-- end alert -->
+
+                    <% else %>
+                    <% end %>
+                <% end %>
+            <% end %>
+            
+
         </div> <!-- end ride activity -->
     </div> <!-- end clearfix -->
 </div>
