@@ -7,15 +7,26 @@
             <h3>
                 Current Rides
             </h3>
-            <div class="media">
-                 <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        This is just an example
-                    </h4> 
-                    This is where the current user's rides show up.
-                </div> <!-- end media-body -->
-            </div> <!--end media -->
+            <% if @rides.empty? %>
+                You have no rides at this time
+            <% else %>
+                <% @rides.each do |r| %>
+                    <div class="alert alert-info approval-notification">
+                        <div class="media">
+                             <%= image_tag r.event.image_url_medium, size: "64x64", class: "media-object pull-left" %>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <strong><%= r.event.title %></strong> 
+                                </h4>
+                                <p> <%= r.event.start_date_time %> </p> 
+                               
+                            </div> <!-- end media-body -->
+                        </div> <!--end media --> 
+                        <div class="hidden"><%=  %></div>
+                    </div> <!-- end alert -->
+                <% end %>
+            <% end %>
+                
         </div> <!-- end left column -->
 
         <div class="col-md-5 column">

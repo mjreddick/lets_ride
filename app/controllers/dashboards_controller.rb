@@ -2,6 +2,7 @@ class DashboardsController < ApplicationController
 	before_action :require_correct_user, only: [:show]
 	def show
 		@notifications = current_user.notifications
+		@rides = current_user.rides
 
 	end
 	
