@@ -175,7 +175,7 @@ function chooseHelper(self){
 		$('#event_image_url_large').val(event.largeImage);
 		$('#event_title').val(event.title);
 		$('#event_details').val(event.details);
-		$('#event_start_date_time').val(event.starDateTime);
+		$('#event_start_date_time').val(event.formattedDateTime);
 		$('#event_venue_name').val(event.venueName);
 
 		return true;	
