@@ -6,7 +6,7 @@
 					<h2 class='inline text-center'>Rides Available</h2>
 				</div>
 				<div class='panel-body'>
-					<% @users.each do |user| %> 
+					<% @users.each do |user| %>
 						<div class='list-group'>
 						</div>
 							<br>
@@ -15,7 +15,7 @@
 						</div>
           <%= image_tag(user.avatar.url, size: "100x100") %>
           <button  class="btn btn-default btn-join-carpool">Join</button>
-					<% end %>				
+          <% end %>		
 				</div>
 			</div>
 		</div>

@@ -1,14 +1,16 @@
 class RidesController < ApplicationController
 
 	def index
-		@rides = Ride.all
-		@users = User.all
-
-		# if logged_in?
-		# 	render
-		# else
-		# 	redirect_to new_user_path
-
+		if logged_in?
+			# do all this stuff
+			zipcode = params[:zipcode]
+			eventful_id = params[:eventful_id]
+			event = Event.find_by eventful_id: eventful_id
+			@rides = Ride.joins(:event, :userrides).where(event: event, userrides: { zipcode: zipcode, is_driver: true} )
+			@users = User.joins(:userrides, :rides).where(userrides: {is_driver: true, zipcode: zipcode}, rides: {event: event}).distinct
+		else
+			redirect_to login_path
+		end
 	end
 
 	def new
