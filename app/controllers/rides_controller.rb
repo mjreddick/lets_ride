@@ -40,17 +40,17 @@ class RidesController < ApplicationController
 
 					else
 						# error creating userride, show error message
-						flash[:error] = "An error occurred while saving data associated with your ride, please try again"
+						flash[:danger] = "An error occurred while saving data associated with your ride, please try again"
 					end
 
 				else
 					# error creating ride, show error message
-					flash[:error] = "An error occurred while saving your ride, please try again"
+					flash[:danger] = "An error occurred while saving your ride, please try again"
 				end
 
 			else
 				# error creating event, show error message
-				flash[:error] = "An error occurred while saving the event associated with your ride, please try again"
+				flash[:danger] = "An error occurred while saving the event associated with your ride, please try again"
 			end
 
 			# redirect the user to their dashboard
@@ -58,7 +58,7 @@ class RidesController < ApplicationController
 
 		else
 			# if not logged in redirect them to the login page
-			flash[:error] = "Must be logged in to create a ride"
+			flash[:danger] = "Must be logged in to create a ride"
 			redirect_to login_path
 		end
 
