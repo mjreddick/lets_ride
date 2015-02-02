@@ -3,12 +3,13 @@ class RidesController < ApplicationController
 	def index
 		if logged_in?
 			# do all this stuff
-			zipcode = params[:zipcode]
+			@zipcode = params[:zipcode]
 			eventful_id = params[:eventful_id]
 			@event = Event.find_by eventful_id: eventful_id
+			@request = Request.new
 			# get a list of user that are drivers
 			# for a particular event with a certain zipcode
-			@users = User.joins(:userrides, :rides).where(userrides: {is_driver: true, zipcode: zipcode}, rides: {event: @event}).distinct
+			@users = User.joins(:rides).where(userrides: {is_driver: true, zipcode: @zipcode}, rides: {event: @event}).distinct.includes(:rides)
 		else
 			redirect_to login_path
 		end
