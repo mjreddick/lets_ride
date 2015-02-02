@@ -9,3 +9,5 @@ Rails.application.config.assets.version = '1.0'
 
 
 Rails.application.config.assets.precompile += %w( static_pages.js )
+Rails.application.config.assets.precompile += %w( rides.js )
+Rails.application.config.assets.precompile += %w( dashboards.js )
