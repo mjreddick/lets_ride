@@ -59,13 +59,10 @@
 
 			      	  <%= f.label :num_seats, "Available seats" %>
 			      	  <%= f.number_field :num_seats, min: 1, class: 'form-control' %>
-
+			      	  <%= f.submit "Create Ride", class: "btn btn-danger" %>
+			      	  <% end %>
 			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			          <%= f.submit "Create Ride", class: "btn btn-danger" %>
-			        <% end %>
-			      </div>
+			   
 			    </div>
 			  </div>
 			</div>
