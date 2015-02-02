@@ -194,8 +194,8 @@ function lookForRides(){
 	var zipcode = $('#zipcodeInput').val();
 
 	// get the eventful_id from the new ride modal
-	var eventId = $('#ride_eventful_id').val();
-	window.location.href = "/rides?event_ful_id=" + eventId + 
+	var eventId = $('#event_eventful_id').val();
+	window.location.href = "/rides?eventful_id=" + eventId + 
 	"&zipcode=" + zipcode;
 }
 
