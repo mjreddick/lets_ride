@@ -5,9 +5,10 @@ class RidesController < ApplicationController
 			# do all this stuff
 			zipcode = params[:zipcode]
 			eventful_id = params[:eventful_id]
-			event = Event.find_by eventful_id: eventful_id
-			@rides = Ride.joins(:event, :userrides).where(event: event, userrides: { zipcode: zipcode, is_driver: true} )
-			@users = User.joins(:userrides, :rides).where(userrides: {is_driver: true, zipcode: zipcode}, rides: {event: event}).distinct
+			@event = Event.find_by eventful_id: eventful_id
+			# get a list of user that are drivers
+			# for a particular event with a certain zipcode
+			@users = User.joins(:userrides, :rides).where(userrides: {is_driver: true, zipcode: zipcode}, rides: {event: @event}).distinct
 		else
 			redirect_to login_path
 		end
