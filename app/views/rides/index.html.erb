@@ -8,24 +8,26 @@
 					<h2 class='inline text-center'>Rides Available</h2>
 				</div>
 				<div class='panel-body'>
-					<% @users.each do |user| %>
-						<div class='list-group'></div>
-							<br>
-						<div class='list-group-item-heading'>
-							<p>I'm, <strong><%= user.first_name %></strong>, join my carpool!</p>
-						</div>
-          	<%= image_tag(user.avatar.url, size: "100x100") %>
-          	<%= form_for :userride, url: userrides_path  do |f|%>
-          		<br/>
-          		<%= f.hidden_field :event_id, value: @event.id %>
-          		<%= f.hidden_field :user_id, value: user.id %> 
-          		<%= f.submit "Join My Carpool", class: "btn btn-default btn-join-carpool" %>
-          	<% end %>
-          <% end %>		
+					<% unless @users.empty? %>
+						<% @users.each do |user| %>
+							<div class='list-group'></div>
+								<br>
+							<div class='list-group-item-heading'>
+								<p>I'm, <strong><%= user.first_name %></strong>, join my carpool!</p>
+							</div>
+	          	<%= image_tag(user.avatar.url, size: "100x100") %>
+	          	<%= form_for :userride, url: api_requests_path, remote: true do |f|%>
+	          		<br/>
+	          		<%= f.hidden_field :event_id, value: @event.id %>
+	          		<%= f.hidden_field :user_id, value: user.id %> 
+	          		<%= f.submit "Join My Carpool", class: "btn btn-default btn-join-carpool" %>
+	          	<% end %>
+	          <% end %>	
+        	<% else %> 
+        		There are no rides availble in your area.
+        	<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
